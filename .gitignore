@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+myenv/
+myvenv/
+.venv/
+
+# Files written while the program runs
+src/test.urdf
+src/temp*.urdf
+src/creatures/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
