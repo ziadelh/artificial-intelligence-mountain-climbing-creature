@@ -28,13 +28,19 @@ Built on the course's starter framework (genome, creature and URDF generation fo
 
 ## Results
 
-Best fitness rose from 57 in the first generation to over 100 by generation 1 (peak 109.6) and settled at 102.8 from generation 19 on. The average fitness rose from -3 to between 23 and 47. The run counts a creature with a fitness of 50 or more as a climber: their number grew from 2 to 16 in generation 1 and reached 26 by generation 45. No creature reached the top-climber threshold of 200, which suggests the search stalled on a local peak.
-
-**Limitation.** Creatures start 10 units up and vertical gain is measured against that start height, not against the ground below them. In short test runs, the top-scoring creatures earned their bonus from rising about 0.2 above the drop height, not from reaching the top of the mountain, and none summited. Measuring height relative to the terrain would be the natural next step.
+Best fitness rose from 57 in the first generation to over 100 by generation 1 (peak 109.6) and settled at 102.8 from generation 19 on. The average fitness rose from -3 to between 21 and 47. The run counts a creature with a fitness of 50 or more as a climber: their number grew from 2 to 16 in generation 1 and reached 26 by generation 45. No creature reached the top-climber threshold of 200, which suggests the search stalled on a local peak.
 
 <img src="results/climber_counts.png" alt="Climbers per generation" width="75%">
 
 The raw numbers are in `results/fitness_log.csv` and `results/climber_table.csv`.
+
+## Known limitations
+
+Three things I would change with more time. The results above are from the code as submitted, with these behaviours in place.
+
+- **Height bonus.** Creatures start 10 units up and vertical gain is measured against that start height, not against the ground below them. In short test runs, the top-scoring creatures earned their bonus from rising about 0.2 above the drop height, not from reaching the top of the mountain, and none summited. Measuring height relative to the terrain would be the natural next step.
+- **Motor assignment.** Motors are handed out to joints by index across all joints, including the fixed joints that attach the feet. Some motors therefore drive two joints and advance their clock twice per step.
+- **Re-scoring.** A creature's motors keep their clock between evaluations, so the elites carried into the next generation start from a different phase and can score differently. This is why the best-fitness curve can dip.
 
 ## Run
 
